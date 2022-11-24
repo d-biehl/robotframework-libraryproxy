@@ -1,6 +1,6 @@
 # robotframework-libraryproxy
 
-Simple library for calling robot framework keywords from Python. With the possibility that these call are also logged to the robot output.
+Simple library for calling RobotFramework keywords from Python, with the possibility to log them in the output.
 
 Example Python library:
 
