@@ -8,13 +8,30 @@ Example Python library:
 from Browser import Browser
 from robotlibraryproxy import library_proxy
 
+def do_something_in_browser(self):
+    with library_proxy(Browser) as browser:
+        browser.new_browser(headless=False)
+        browser.new_page("https://example.com")
+        browser.click("text=More Information...")
+
+```
+
+or another way as python descriptor:
+
+```python
+from Browser import Browser
+from robotlibraryproxy import library_proxy
+
 
 class Dummy:
+
+    browser = library_proxy(Browser)
+
     def do_something_in_browser(self):
-        with library_proxy(Browser) as browser:
-            browser.new_browser(headless=False)
-            browser.new_page("https://example.com")
-            browser.click("text=More Information...")
+        self.browser.new_browser(headless=False)
+        self.browser.new_page("https://example.com")
+        self.browser.click("text=More Information...")
+
 ```
 
 Example Test case that uses this library:
