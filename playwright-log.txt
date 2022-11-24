@@ -1,0 +1,15 @@
+{"level":30,"time":"2022-11-24T20:41:56.475Z","pid":20776,"hostname":"Blaufuss","msg":"Listening on 62063"}
+{"level":30,"time":"2022-11-24T20:41:56.618Z","pid":20776,"hostname":"Blaufuss","msg":"Start of node method newBrowser"}
+{"level":30,"time":"2022-11-24T20:41:56.954Z","pid":20776,"hostname":"Blaufuss","msg":"End of node method newBrowser"}
+{"level":30,"time":"2022-11-24T20:41:56.957Z","pid":20776,"hostname":"Blaufuss","msg":"Start of node method newPage"}
+{"level":30,"time":"2022-11-24T20:41:56.958Z","pid":20776,"hostname":"Blaufuss","msg":"currentBrowser: [object Object]"}
+{"level":30,"time":"2022-11-24T20:41:56.975Z","pid":20776,"hostname":"Blaufuss","msg":"Changed active context"}
+{"level":30,"time":"2022-11-24T20:41:57.183Z","pid":20776,"hostname":"Blaufuss","msg":"Video path: undefined"}
+{"level":30,"time":"2022-11-24T20:41:57.183Z","pid":20776,"hostname":"Blaufuss","msg":"Changed active page"}
+{"level":30,"time":"2022-11-24T20:41:57.640Z","pid":20776,"hostname":"Blaufuss","msg":"End of node method newPage"}
+{"level":30,"time":"2022-11-24T20:41:57.646Z","pid":20776,"hostname":"Blaufuss","msg":"Start of node method click"}
+{"level":30,"time":"2022-11-24T20:41:57.646Z","pid":20776,"hostname":"Blaufuss","msg":"Strict mode is enabled, find Locator with text=More Information... in page."}
+{"level":30,"time":"2022-11-24T20:41:58.368Z","pid":20776,"hostname":"Blaufuss","msg":"End of node method click"}
+{"level":30,"time":"2022-11-24T20:41:58.388Z","pid":20776,"hostname":"Blaufuss","msg":"Start of node method closeAllBrowsers"}
+{"level":30,"time":"2022-11-24T20:41:58.398Z","pid":20776,"hostname":"Blaufuss","msg":"Removed page=aebbb589-480c-4e16-9789-6e992e18ffa2 from context=15e0c2bb-2c33-4ac7-b65c-4a9529589c13 page stack"}
+{"level":30,"time":"2022-11-24T20:41:58.556Z","pid":20776,"hostname":"Blaufuss","msg":"End of node method closeAllBrowsers"}
