@@ -27,6 +27,7 @@ black = "*"
 
 [tool.poetry.group.test.dependencies]
 pytest = "*"
+robotframework-browser = "*"
 
 [tool.black]
 line-length = 120
