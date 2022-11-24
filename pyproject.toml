@@ -1,11 +1,31 @@
 [tool.poetry]
 name = "robotframework-libraryproxy"
 version = "0.1.0"
-description = ""
+description = "Call RobotFramework keywords from Python"
 authors = ["Daniel Biehl <dbiehl@live.de>"]
 readme = "README.md"
-packages = [{ include = "robotlibraryproxy", from = "src" }]
+license = "Apache-2.0"
+homepage = 'https://github.com/d-biehl/robotframework-libraryproxy'
+repository = 'https://github.com/d-biehl/robotframework-libraryproxy'
 
+keywords = ["Test", "Testing", "RobotFramework"]
+classifiers = [
+  "Development Status :: 5 - Production/Stable",
+  "License :: OSI Approved :: Apache Software License",
+  "Framework :: Robot Framework",
+  "Framework :: Robot Framework :: Tool",
+  "Operating System :: OS Independent",
+  "Programming Language :: Python :: 3.8",
+  "Programming Language :: Python :: 3.9",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: Implementation",
+  "Topic :: Software Development :: Testing",
+  "Topic :: Software Development :: Testing :: Acceptance",
+  "Typing :: Typed"
+]
+
+packages = [{ include = "robotlibraryproxy", from = "src" }]
 
 [build-system]
 requires = ["poetry-core"]
