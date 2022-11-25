@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "robotframework-libraryproxy"
-version = "0.1.0"
+version = "0.0.0-post.11+8edb73a"
 description = "Call RobotFramework keywords from Python"
 authors = ["Daniel Biehl <dbiehl@live.de>"]
 readme = "README.md"
@@ -28,14 +28,22 @@ classifiers = [
 packages = [{ include = "robotlibraryproxy", from = "src" }]
 
 [build-system]
-requires = ["poetry-core"]
-build-backend = "poetry.core.masonry.api"
+requires = ["poetry-core", "poetry-dynamic-versioning"]
+#build-backend = "poetry.core.masonry.api"
+build-backend = "poetry_dynamic_versioning.backend"
+
+[tool.poetry-dynamic-versioning.substitution]
+folders = [{ path = "src" }]
+
+[tool.poetry-dynamic-versioning]
+enable = true
+vcs = "git"
+style = "semver"
 
 
 [tool.poetry.dependencies]
 python = "^3.8.1"
 robotframework = "*"
-
 
 [tool.poetry.group.dev.dependencies]
 robotframework = { version = "~4.1.0", allow-prereleases = false }
