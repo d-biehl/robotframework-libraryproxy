@@ -21,6 +21,14 @@ from robot.libraries.BuiltIn import BuiltIn
 from robot.running.context import EXECUTION_CONTEXTS
 from robot.running.importer import Importer
 from robot.running.model import Keyword
+from robot.running.statusreporter import StatusReporter
+from robot.running.librarykeywordrunner import LibraryKeywordRunner
+
+class LibraryKeywordRunnerWrapper:
+    def __init__(self, runner: LibraryKeywordRunner)->None:
+        self._runner = runner
+
+    def
 
 T = TypeVar("T")
 
@@ -126,7 +134,7 @@ class RobotLibraryProxy(Generic[T]):
 
         if self.__owner_name not in obj_with_proxy_data.__robot_library_proxy:
             obj_with_proxy_data.__robot_library_proxy[self.__owner_name] = cast(
-                T, _Proxy(self.__name_or_type, *self.__args, **self.__kwargs)  # type: ignore
+                T, _Proxy(self.__name_or_type, *self.__args, **self.__kwargs)   # type: ignore
             )
 
         return cast(T, obj_with_proxy_data.__robot_library_proxy[self.__owner_name])
