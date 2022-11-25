@@ -107,6 +107,7 @@ jobs:
         with:
           virtualenvs-create: true
           virtualenvs-in-project: true
+          installer-parallel: true
 
       - name: Load cached venv
         id: cached-poetry-dependencies
@@ -117,9 +118,11 @@ jobs:
 
       - name: Install dependencies
         if: steps.cached-poetry-dependencies.outputs.cache-hit != 'true'
-        run: poetry install --no-interaction --no-root
+        run: |
+          python -m pip install --upgrade pip
+          poetry install --no-interaction --no-root
 
-      - name: install
+      - name: Install project
         run: poetry install --no-interaction
 
       - run: poetry run isort --check --diff .
@@ -154,6 +157,7 @@ jobs:
         with:
           virtualenvs-create: true
           virtualenvs-in-project: true
+          installer-parallel: true
 
       - name: Load cached venv
         id: cached-poetry-dependencies
@@ -163,12 +167,12 @@ jobs:
           key: venv-${{ runner.os }}-${{ steps.setup-python.outputs.python-version }}-${{ hashFiles('**/poetry.lock') }}
 
       - name: Install dependencies
+        if: steps.cached-poetry-dependencies.outputs.cache-hit != 'true'
         run: |
           python -m pip install --upgrade pip
-          poetry config virtualenvs.create false
           poetry install --no-interaction --no-root
 
-      - name: Install
+      - name: Install project
         run: poetry install --no-interaction
 
       - name: Python Semantic Release
