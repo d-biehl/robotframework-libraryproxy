@@ -26,7 +26,7 @@
             "presentation": {
                 "hidden": true
             },
-            "attachPython": false,
+            "attachPython": true,
             "pythonConfiguration": "RobotCode: Python"
         },
         {
