@@ -74,7 +74,7 @@ class _Proxy(Generic[T]):
 
 @runtime_checkable
 class HasRobotLibraryProxy(Protocol):
-    __robot_library_proxy: Optional[Dict[str, Any]]
+    __robot_library_proxy: Optional[Dict[str, Any]]  # NOSONAR
 
 
 class RobotLibraryProxy(Generic[T]):

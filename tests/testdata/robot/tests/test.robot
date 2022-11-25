@@ -2,6 +2,8 @@
 
 Library    ../lib/Dummy.py
 
+Library    testpackage
+
 # Library    Browser
 
 *** Test Cases ***
@@ -10,3 +12,6 @@ first
 
 second
     Do Something In Browser
+
+third
+    Do Something In Package

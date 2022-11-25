@@ -15,7 +15,7 @@ def test_builtin() -> None:
 
 def test_builtin_with_named_parameter() -> None:
     builtin = RobotLibraryProxy(BuiltIn).get_instance()
-    builtin.log("hello", level="dumpofd", console=True)
+    builtin.log("hello", level="ERROR")
 
 
 def test_something_in_browser() -> None:
@@ -46,7 +46,12 @@ def test_builtin_from_instance() -> None:
 def test_browser_from_instance() -> None:
     instance = TestClass()
     instance.do_something_in_browser()
-    assert instance.browser.get_url() == "https://example.com"
+    assert instance.browser.get_url() != "https://example.com"
+
+
+def test_import_module() -> None:
+    with library_proxy("testpackage") as mod:
+        mod.do_something_in_package()
 
 
 def test_robot() -> None:
