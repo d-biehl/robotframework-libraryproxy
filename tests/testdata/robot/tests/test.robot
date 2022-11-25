@@ -1,10 +1,7 @@
 *** Settings ***
-
-Library    ../lib/Dummy.py
-
-Library    testpackage
-
-# Library    Browser
+Library           ../lib/Dummy.py
+Library           testpackage
+# Library         Browser
 
 *** Test Cases ***
 first
@@ -15,4 +12,3 @@ second
 
 third
     Do Something In Package
-    ruimba

@@ -25,8 +25,8 @@ def test_something_in_browser() -> None:
 
 
 class TestClass:
-    builtin = library_proxy(BuiltIn)
-    browser = library_proxy(Browser)
+    builtin: BuiltIn = library_proxy()
+    browser: Browser = library_proxy(Browser)
 
     def log_something(self) -> None:
         self.builtin.log("done something")
@@ -49,7 +49,7 @@ def test_browser_from_instance() -> None:
 
 
 def test_import_module() -> None:
-    with library_proxy("testpackage") as mod:
+    with library_proxy("testpackage") as mod:  # type: ignore
         mod.do_something_in_package()
 
 

@@ -1,7 +1,20 @@
 from __future__ import annotations
 
 from types import TracebackType
-from typing import Any, Dict, Generic, Optional, Protocol, Type, TypeVar, Union, cast, overload, runtime_checkable
+from typing import (
+    Any,
+    Dict,
+    Generic,
+    Optional,
+    Protocol,
+    Type,
+    TypeVar,
+    Union,
+    cast,
+    overload,
+    runtime_checkable,
+    get_type_hints,
+)
 from weakref import ref
 
 from robot.libraries.BuiltIn import BuiltIn
@@ -74,11 +87,11 @@ class _Proxy(Generic[T]):
 
 @runtime_checkable
 class HasRobotLibraryProxy(Protocol):
-    __robot_library_proxy: Optional[Dict[str, Any]]  # NOSONAR
+    __robot_library_proxy: Dict[str, Any]  # NOSONAR
 
 
 class RobotLibraryProxy(Generic[T]):
-    def __init__(self, name_or_type: Union[str, Type[T]], *args: str, **kwargs: str) -> None:
+    def __init__(self, name_or_type: Union[str, Type[T], None] = None, *args: str, **kwargs: str) -> None:
         self.__name_or_type = name_or_type
         self.__args = args
         self.__kwargs = kwargs
@@ -89,6 +102,10 @@ class RobotLibraryProxy(Generic[T]):
     def __set_name__(self, owner: Any, name: str) -> None:
         self.__owner = owner
         self.__owner_name = name
+        if self.__name_or_type is None:
+            hints = get_type_hints(owner)
+            hint = hints.get(name, None)
+            self.__name_or_type = hint
 
     @overload
     def __get__(self, obj: None, objtype: None) -> RobotLibraryProxy[T]:
@@ -102,8 +119,8 @@ class RobotLibraryProxy(Generic[T]):
         if obj is None:
             return self
 
-        if not isinstance(obj, HasRobotLibraryProxy):
-            cast(HasRobotLibraryProxy, obj).__robot_library_proxy = {}
+        if not isinstance(obj, HasRobotLibraryProxy) or obj.__robot_library_proxy is None:
+            obj.__robot_library_proxy = {}
 
         obj_with_proxy_data = cast(HasRobotLibraryProxy, obj)
 
@@ -112,7 +129,7 @@ class RobotLibraryProxy(Generic[T]):
                 T, _Proxy(self.__name_or_type, *self.__args, **self.__kwargs)
             )
 
-        return obj_with_proxy_data.__robot_library_proxy[self.__owner_name]
+        return cast(T, obj_with_proxy_data.__robot_library_proxy[self.__owner_name])
 
     def get_instance(self) -> T:
         if self.__proxy is None:
