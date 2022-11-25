@@ -111,7 +111,7 @@ pythonpath = ["./tests/testdata/robot/lib"]
 profile = "black"
 src_paths = ["robotcode", "tests"]
 #skip_gitignore = true
-skip = ['external']
+skip = ['external', '.venv']
 
 
 [tool.coverage.run]

@@ -11,9 +11,9 @@ from typing import (
     TypeVar,
     Union,
     cast,
+    get_type_hints,
     overload,
     runtime_checkable,
-    get_type_hints,
 )
 from weakref import ref
 
@@ -126,14 +126,14 @@ class RobotLibraryProxy(Generic[T]):
 
         if self.__owner_name not in obj_with_proxy_data.__robot_library_proxy:
             obj_with_proxy_data.__robot_library_proxy[self.__owner_name] = cast(
-                T, _Proxy(self.__name_or_type, *self.__args, **self.__kwargs)
+                T, _Proxy(self.__name_or_type, *self.__args, **self.__kwargs)  # type: ignore
             )
 
         return cast(T, obj_with_proxy_data.__robot_library_proxy[self.__owner_name])
 
     def get_instance(self) -> T:
         if self.__proxy is None:
-            self.__proxy = _Proxy(self.__name_or_type, *self.__args, **self.__kwargs)
+            self.__proxy = _Proxy(self.__name_or_type, *self.__args, **self.__kwargs)  # type: ignore
         return cast(T, self.__proxy)
 
     def __enter__(self) -> T:

@@ -8,18 +8,18 @@ ROBOT_DATA_PATH = Path(Path(__file__).parent, "testdata", "robot")
 
 
 def test_builtin() -> None:
-    builtin = RobotLibraryProxy(BuiltIn).get_instance()
+    builtin = RobotLibraryProxy(BuiltIn).get_instance()  # type: ignore
     builtin.log("hello")
     print(builtin.ROBOT_LIBRARY_VERSION)
 
 
 def test_builtin_with_named_parameter() -> None:
-    builtin = RobotLibraryProxy(BuiltIn).get_instance()
+    builtin = RobotLibraryProxy(BuiltIn).get_instance()  # type: ignore
     builtin.log("hello", level="ERROR")
 
 
 def test_something_in_browser() -> None:
-    with library_proxy(Browser) as browser:
+    with library_proxy(Browser) as browser:  # type: ignore
         browser.new_page("https://example.com")
         browser.click("text=More Information...")
 
