@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "robotframework-libraryproxy"
-version = "0.0.0-post.11+8edb73a"
+version = "0.0.1"
 description = "Call RobotFramework keywords from Python"
 authors = ["Daniel Biehl <dbiehl@live.de>"]
 readme = "README.md"
@@ -38,7 +38,7 @@ folders = [{ path = "src" }]
 [tool.poetry-dynamic-versioning]
 enable = true
 vcs = "git"
-style = "semver"
+style = "pep440"
 
 
 [tool.poetry.dependencies]
