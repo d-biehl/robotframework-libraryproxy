@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "robotframework-libraryproxy"
-version = "0.0.0"
+version = "0.0.1-beta.1"
 description = "Call RobotFramework keywords from Python"
 authors = ["Daniel Biehl <dbiehl@live.de>"]
 readme = "README.md"
