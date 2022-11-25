@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "robotframework-libraryproxy"
-version = "0.0.1"
+version = "0.0.0"
 description = "Call RobotFramework keywords from Python"
 authors = ["Daniel Biehl <dbiehl@live.de>"]
 readme = "README.md"
@@ -27,23 +27,38 @@ classifiers = [
 
 packages = [{ include = "robotlibraryproxy", from = "src" }]
 
+
 [build-system]
 requires = ["poetry-core", "poetry-dynamic-versioning"]
 #build-backend = "poetry.core.masonry.api"
 build-backend = "poetry_dynamic_versioning.backend"
 
+
 [tool.poetry-dynamic-versioning.substitution]
 folders = [{ path = "src" }]
+
 
 [tool.poetry-dynamic-versioning]
 enable = true
 vcs = "git"
-style = "pep440"
+style = "semver"
+
+
+[tool.semantic_release]
+version_variable = [
+  "src/robotlibraryproxy/__version__.py:__version__",
+  "pyproject.toml:version",
+]
+branch = "main"
+upload_to_pypi = false
+upload_to_release = true
+build_command = "pip install poetry && poetry build"
 
 
 [tool.poetry.dependencies]
 python = "^3.8.1"
 robotframework = "*"
+
 
 [tool.poetry.group.dev.dependencies]
 robotframework = { version = "~4.1.0", allow-prereleases = false }
@@ -51,11 +66,14 @@ isort = "*"
 mypy = "*"
 flake8 = "*"
 black = "*"
-#pep8-naming = "*"
+pep8-naming = "*"
+python-semantic-release = "*"
+
 
 [tool.poetry.group.test.dependencies]
 pytest = "*"
 robotframework-browser = "*"
+
 
 [tool.black]
 line-length = 120
@@ -76,6 +94,7 @@ exclude = '''
 )
 '''
 
+
 [tool.pytest.ini_options]
 minversion = "6.0"
 addopts = "-ra -vv"
@@ -87,15 +106,18 @@ junit_suite_name = "robotcode"
 # log_cli_format = "%(levelname)s %(name)s: %(message)s"
 pythonpath = ["./tests/testdata/robot/lib"]
 
+
 [tool.isort]
 profile = "black"
 src_paths = ["robotcode", "tests"]
 #skip_gitignore = true
 skip = ['external']
 
+
 [tool.coverage.run]
 omit = ["*tests*"]
 source = ["robotcode"]
+
 
 [tool.mypy]
 # MyPy config
@@ -109,6 +131,7 @@ strict = true
 disallow_subclassing_any = false
 #ignore_missing_imports = true
 exclude = ["\\.mypy_cache", "\\.venv", "build", "playground"]
+
 
 [[tool.mypy.overrides]]
 module = ["robot.*", "robotremoteserver.*", "debugpy.*"]

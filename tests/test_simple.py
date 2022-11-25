@@ -20,7 +20,6 @@ def test_builtin_with_named_parameter() -> None:
 
 def test_something_in_browser() -> None:
     with library_proxy(Browser) as browser:
-        browser.new_browser(headless=False)
         browser.new_page("https://example.com")
         browser.click("text=More Information...")
 
@@ -60,10 +59,12 @@ def test_robot() -> None:
     assert (
         run(
             str(ROBOT_DATA_PATH),
-            output=None,
-            log=None,
-            report=None,
+            outputdir=str(Path(ROBOT_DATA_PATH, "results")),
+            # output=None,
+            # log=None,
+            # report=None,
             loglevel="TRACE:TRACE",
+            console="quiet",
         )
         == 0
     )
