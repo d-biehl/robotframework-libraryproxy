@@ -3,6 +3,7 @@ from __future__ import annotations
 from types import TracebackType
 from typing import (
     Any,
+    Callable,
     Dict,
     Generic,
     Optional,
@@ -20,11 +21,53 @@ from weakref import ref
 from robot.libraries.BuiltIn import BuiltIn
 from robot.running.context import EXECUTION_CONTEXTS
 from robot.running.importer import Importer
+from robot.running.librarykeywordrunner import LibraryKeywordRunner
 from robot.running.model import Keyword
+from robot.running.statusreporter import StatusReporter
 
 T = TypeVar("T")
 
 _IMPORTER = Importer()
+
+
+class LibraryKeywordRunnerWrapper(LibraryKeywordRunner):
+    def __init__(self, runner: LibraryKeywordRunner, callable: Callable[..., Any], *args: Any, **kwargs: Any):
+        self._runner = runner
+        self._handler = runner._handler
+        self.name = runner.name
+        self.pre_run_messages = runner.pre_run_messages
+        self._callable = callable
+        self._args = args
+        self._kwargs = kwargs
+
+    def run(self, kw: Any, context: Any, run: bool = True) -> Any:
+
+        result = self._runner._get_result(kw, ())
+
+        with StatusReporter(kw, result, context, run):
+            if run:
+                return self._callable(*self._args, **self._kwargs)
+
+
+class KeywordWrapper(Keyword):
+    def __init__(
+        self,
+        name: str,
+        callable: Callable[..., Any],
+        *args: Any,
+        **kwargs: Any,
+    ):
+        self._callable = callable
+        self._args = args
+        self._kwargs = kwargs
+
+        super().__init__(name, args=(*args, *[f"{k}={str(v)}" for k, v in kwargs.items()]))
+
+    def run(self, context: Any, run: bool = True, templated: Any = None) -> Any:
+        runner = context.get_runner(self.name)
+        if isinstance(runner, LibraryKeywordRunner):
+            runner = LibraryKeywordRunnerWrapper(runner, self._callable, *self._args, **self._kwargs)
+        return runner.run(self, context)
 
 
 class _Proxy(Generic[T]):
@@ -71,12 +114,9 @@ class _Proxy(Generic[T]):
             if callable(value) and EXECUTION_CONTEXTS.current is not None:
 
                 def call(*args: Any, **kwargs: Any) -> Any:
-                    kw = Keyword(
-                        f"{self.__name}.{name}",
-                        args=(*args, *[f"{k}={str(v)}" for k, v in kwargs.items()]),
+                    return KeywordWrapper(f"{self.__name}.{name}", value, *args, **kwargs).run(
+                        EXECUTION_CONTEXTS.current
                     )
-
-                    return kw.run(EXECUTION_CONTEXTS.current)
 
                 return call
 

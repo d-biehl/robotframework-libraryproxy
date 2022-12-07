@@ -25,7 +25,7 @@ from robotlibraryproxy import library_proxy
 
 class Dummy:
 
-    browser = library_proxy(Browser)
+    browser: Browser = library_proxy()
 
     def do_something_in_browser(self):
         self.browser.new_browser(headless=False)

@@ -1,6 +1,7 @@
 from pathlib import Path
 
 from Browser import Browser
+from Browser.utils.data_types import SupportedBrowsers
 from robot.libraries.BuiltIn import BuiltIn
 from robotlibraryproxy import RobotLibraryProxy, library_proxy
 
@@ -32,6 +33,7 @@ class TestClass:
         self.builtin.log("done something")
 
     def do_something_in_browser(self) -> None:
+        self.browser.new_browser(SupportedBrowsers.chromium, headless=False)
         self.browser.new_page("https://example.com")
         self.browser.click("text=More Information...")
 
