@@ -33,7 +33,7 @@ class TestClass:
         self.builtin.log("done something")
 
     def do_something_in_browser(self) -> None:
-        self.browser.new_browser(SupportedBrowsers.chromium, headless=False)
+        self.browser.new_browser(SupportedBrowsers.chromium, headless=True)
         self.browser.new_page("https://example.com")
         self.browser.click("text=More Information...")
 

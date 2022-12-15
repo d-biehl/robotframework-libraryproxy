@@ -20,7 +20,7 @@ class Dummy:
         return True
 
     def do_something_in_browser(self) -> None:
-        self.browser.new_browser(SupportedBrowsers.firefox, headless=False)
+        self.browser.new_browser(SupportedBrowsers.firefox, headless=True)
         self.browser.new_page("https://example.com")
         self.browser.click("text=More Information...")
 
