@@ -1,8 +1,8 @@
 from Browser import Browser
 from Browser.utils.data_types import SupportedBrowsers
+from robot.api.deco import not_keyword
 from robot.libraries.BuiltIn import BuiltIn
 from robotlibraryproxy import library_proxy
-from robot.api.deco import not_keyword
 
 
 class Dummy:
@@ -24,6 +24,6 @@ class Dummy:
         self.browser.new_page("https://example.com")
         self.browser.click("text=More Information...")
 
-    @not_keyword
+    @not_keyword  # type: ignore
     def not_a_keyword(self) -> None:
         print("not a keyword")
