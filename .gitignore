@@ -288,3 +288,5 @@ report.html
 # robot
 results
 playwright-log.txt
+
+.robotcode_cache/
