@@ -11,6 +11,12 @@ on:
       - "docs/**"
       - "*.md"
 
+  workflow_dispatch:
+
+env:
+  PYTHONUNBUFFERED: "1"
+  PIP_DISABLE_PIP_VERSION_CHECK: "1"
+
 jobs:
   test:
     # We want to run on external PRs, but not on our own internal PRs as they'll be run
