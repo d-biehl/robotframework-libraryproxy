@@ -177,7 +177,7 @@ class _Proxy(Generic[T]):
 
                         return KeywordWrapper(f"{self.__name}.{name}", value, *args, **kwargs).run(
                             result, EXECUTION_CONTEXTS.current
-                        )
+                        )  # type: ignore
 
                     return call
 
@@ -224,7 +224,7 @@ class _Proxy(Generic[T]):
                     def call(*args: Any, **kwargs: Any) -> Any:
                         return KeywordWrapper(f"{self.__name}.{name}", value, *args, **kwargs).run(
                             EXECUTION_CONTEXTS.current
-                        )
+                        )  # type: ignore
 
                     return call
 
