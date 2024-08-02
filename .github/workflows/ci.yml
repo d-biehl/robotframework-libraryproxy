@@ -63,7 +63,7 @@ jobs:
         run: poetry install --no-interaction
 
       - name: Install robotframework version
-        run: poetry run pip install robotframework==${{ matrix.rf-versions }}
+        run: poetry run pip install -U robotframework==${{ matrix.rf-versions }}
 
       - name: initialize robotframework.Browser
         run: poetry run rfbrowser init
