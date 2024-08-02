@@ -19,13 +19,13 @@ from typing import (
 )
 from weakref import ref
 
-from robot.version import get_version
 from robot.libraries.BuiltIn import BuiltIn
 from robot.running.context import EXECUTION_CONTEXTS
 from robot.running.importer import Importer
 from robot.running.librarykeywordrunner import LibraryKeywordRunner
 from robot.running.model import Keyword
 from robot.running.statusreporter import StatusReporter
+from robot.version import get_version
 
 T = TypeVar("T")
 
