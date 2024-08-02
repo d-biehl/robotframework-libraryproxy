@@ -290,3 +290,5 @@ results
 playwright-log.txt
 
 .robotcode_cache/
+
+playground/

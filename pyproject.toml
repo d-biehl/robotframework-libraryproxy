@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "robotframework-libraryproxy"
-version = "0.2.0"
+version = "0.3.0"
 description = "Call RobotFramework keywords from Python"
 authors = ["Daniel Biehl <dbiehl@live.de>"]
 readme = "README.md"
@@ -56,12 +56,12 @@ build_command = "pip install poetry && poetry build"
 
 
 [tool.poetry.dependencies]
-python = "^3.8.1"
+python = "^3.10"
 robotframework = "*"
 
 
 [tool.poetry.group.dev.dependencies]
-robotframework = { version = "~4.1.0", allow-prereleases = false }
+robotframework = { version = "~5.0.0", allow-prereleases = false }
 isort = "*"
 mypy = "*"
 flake8 = "*"
@@ -123,7 +123,7 @@ source = ["robotcode"]
 [tool.mypy]
 # MyPy config
 # File reference here - http://mypy.readthedocs.io/en/latest/config_file.html#config-file
-python_version = 3.8
+python_version = "3.8"
 warn_redundant_casts = true
 warn_unused_ignores = true
 warn_return_any = true
