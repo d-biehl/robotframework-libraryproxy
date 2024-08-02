@@ -256,7 +256,8 @@ class RobotLibraryProxy(Generic[T]):
             self.__name_or_type = hint
 
     @overload
-    def __get__(self, obj: None, objtype: None) -> RobotLibraryProxy[T]: ...
+    def __get__(self, obj: None, objtype: None) -> RobotLibraryProxy[T]:
+        ...
 
     @overload
     def __get__(self, obj: object, objtype: type[object]) -> T: ...
